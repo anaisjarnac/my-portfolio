@@ -1,23 +1,56 @@
-import logo from './logo.svg';
+import Header from './layout/components/Header';
 import './App.css';
+import MyProjects from './view/projects/MyProjects'
+import Home from './view/accueil/Home';
+import CreateProject from './view/adproject/components/CreateProject';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Main from "./layout/Main";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+
+
+<Router>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <Main>
+                <Home />
+              </Main>
+            )}
+          />
+
+
+          <Route
+            exact
+            path="/projets"
+            render={() => (
+              <Main>
+                <MyProjects />
+              </Main>
+            )}
+          />
+          <Route
+            exact
+            path="/nouveauprojet"
+            render={() => (
+              <Main>
+                < CreateProject />
+              </Main>
+            )}
+          />
+        
+          </Switch>
+      </Router> 
+
+
+   
+      
+{/* < CreateProject /> */}
     </div>
   );
 }
