@@ -69,7 +69,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function ModalProject() {
+export default function ModalProject({devPro}) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -80,6 +80,19 @@ export default function ModalProject() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  // const [unicproject, setUnicProject] = useState([]);
+
+  // useEffect(() => {
+  //   axios
+  //     .get(`https://toctoc-api.herokuapp.com/flat/${props.match.params.id}`)
+  //     .then((response) => {
+  //       setUnicProject(response.data);
+  //     });
+  // }, [props.match.params.id]);
+
+
+  
 
   return (
     <div>
@@ -93,6 +106,7 @@ export default function ModalProject() {
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
+            {/* {unicproject.title} */}
             <h1>MON PROJET : LA GUINGUETTE</h1>
             
             </Typography>
