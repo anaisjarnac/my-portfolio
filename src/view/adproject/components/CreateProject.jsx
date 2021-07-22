@@ -14,6 +14,7 @@ import {
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import { Link } from "react-router-dom";
 import Upload from "./Upload";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   ok: {
@@ -121,6 +122,9 @@ export default function Form() {
     stack: "",
   });
 
+  const createProjects = () => {
+    axios.post('http://localhost:3030/projects', form)};
+
   const handleTextFieldChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -128,6 +132,7 @@ export default function Form() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(form);
+    createProjects();
   };
 
   const [open, setOpen] = React.useState(false);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -10,10 +10,18 @@ import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import ModalProject from './ModalProject';
+import {
+  Dialog,
+  DialogActions,
+  DialogTitle,
+} from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    maxWidth: 400,
+    height: 430,
   },
   media: {
     height: 0,
@@ -52,6 +60,12 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: "#9EA074"
   },
+  cat2: {
+    fontFamily: "Poppins, sans-serif",
+    fontSize: "10px",
+    textAlign: 'center',
+    color: "#CF7C83"
+  },
   icon: {
     marginLeft: "250px",
     color: "#566B5B"
@@ -66,23 +80,53 @@ export default function RecipeReviewCard({ title, category, img, description, da
     setExpanded(!expanded);
   };
 
+  const [open, setOpen] = React.useState(false);
+  
+
+  const sampleDelete = async () => {
+    const result = await axios.delete('http://localhost:3030/projects/${id}');
+    console.log(result);
+  };
+
   return (
     <Card className={classes.root}>
      <div>
      <IconButton aria-label="settings" className={classes.icon}>
-            <HighlightOffIcon />
+            <HighlightOffIcon onClick={sampleDelete}/>
+            {/* // onClick={() => setOpen(true)} */}
+            
           </IconButton>
      <h1 className={classes.title}>{title}</h1>
       <hr className={classes.hr}></hr>
       <p className={classes.cat}>{category}</p>
       </div>
-      
+      <p className={classes.cat2}>{description}</p>
       <CardMedia
         className={classes.media}
         image={img}
         title={title}
+        
       />
        <ModalProject className={classes.modal}/>
+       <Dialog
+            open={open}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title" className={classes.dialog}>
+              {"Votre projet a bien été supprimé !"}
+            </DialogTitle>
+            <DialogActions>
+              <Button
+                className={classes.ok}
+                onClick={() => setOpen(false)}
+                color="primary"
+                autoFocus
+              >
+                <strong>Ok</strong>
+              </Button>
+            </DialogActions>
+          </Dialog>
     </Card>
   );
 }
