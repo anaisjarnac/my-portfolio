@@ -39,15 +39,17 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    color: "white",
-    width: "40%",
-    backgroundColor: "#5C9A9A",
-    fontFamily: "Open Sans Condensed, sans-serif",
+    color: "black",
+    width: "50%",
+    backgroundColor: "#80A4B2",
+    fontFamily: "Poppins, sans-serif",
     fontWeight: 400,
     fontSize: "20px",
+    marginBottom:" 10%",
     "&:hover": {
-      background: "#F29F24",
+      background: "#FFDFA3",
     },
+    
   },
   root: {
     "& .MuiTextField-root": {
@@ -60,22 +62,28 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
     textAlign: "center",
     fontWeight: 500,
-    fontSize: "30px",
+    fontSize: "25px",
+    fontFamily: "'Poppins', sans-serif",
     // borderBottom: "1px solid",
     // paddingBottom: "20px",
   },
   input: {
     backgroundColor: "white",
     borderRadius: "5px",
+   
   },
   button: {
     display: "flex",
     justifyContent: "center",
   },
   hr: {
-    width: "50%",
+    width: "30%",
     marginTop: "8%",
     marginBottom: "10%",
+    size: "30px",
+    height: "3px",
+    backgroundColor: "black",
+    border : "none"
   },
   alert: {
     fontFamily: "Open Sans Condensed, sans-serif",
@@ -85,8 +93,20 @@ const useStyles = makeStyles((theme) => ({
   back: {
     textAlign: "center",
     fontSize: "50px",
-  color: "red",
-  }
+    color: "#FFC864",
+    margin: "30px"
+  },
+  
+  contain: {
+    
+    backgroundImage: "url('/assets/martin.jpg')",
+    width: "100%",
+    height: "100%",
+ backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    
+  },
 }));
 
 export default function Form() {
@@ -113,6 +133,7 @@ export default function Form() {
   const [open, setOpen] = React.useState(false);
 
   return (
+    <div className={classes.contain}>
     <Container component="main" maxWidth="xs" className={classes.container}>
       <CssBaseline />
       <div>
@@ -134,10 +155,11 @@ export default function Form() {
                 required
                 fullWidth
                 id="title"
-                label="Titre"
+                label="Titre du Projet"
                 autoFocus
                 onChange={handleTextFieldChange}
                 value={form.title}
+                required={false}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -147,11 +169,12 @@ export default function Form() {
                 required
                 fullWidth
                 id="date"
-                label="année"
+                label="Année de création"
                 name={"date"}
                 autoComplete="date"
                 onChange={handleTextFieldChange}
                 value={form.date}
+                required={false}
               />
             </Grid>
             <Grid item xs={12}>
@@ -161,11 +184,12 @@ export default function Form() {
                 required
                 fullWidth
                 id="category"
-                label="catégorie"
+                label="Catégorie"
                 name={"category"}
                 autoComplete="category"
                 onChange={handleTextFieldChange}
                 value={form.category}
+                required={false}
               />
             </Grid>
             <Grid item xs={12}>
@@ -175,11 +199,12 @@ export default function Form() {
                 required
                 fullWidth
                 id="stack"
-                label="stack"
+                label="Technologie utilisée"
                 name={"stack"}
                 autoComplete="stack"
                 onChange={handleTextFieldChange}
                 value={form.stack}
+                required={false}
               />
             </Grid>
             <Grid item xs={12}>
@@ -187,7 +212,7 @@ export default function Form() {
                 className={classes.input}
                 id="outlined-textarea"
                 required
-                label="description"
+                label="Description du projet"
                 multiline
                 variant="outlined"
                 onChange={handleTextFieldChange}
@@ -196,6 +221,7 @@ export default function Form() {
                 rows={4}
                 rowsMax={7}
                 fullWidth
+                required={false}
               />
             </Grid>
     
@@ -211,7 +237,7 @@ export default function Form() {
               color="primary"
               className={classes.submit}
             >
-              CREER
+              Créer 
             </Button>
           </div>
           <Dialog
@@ -236,5 +262,6 @@ export default function Form() {
         </form>
       </div>
     </Container>
+    </div>
   );
 }

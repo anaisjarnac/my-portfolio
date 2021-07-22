@@ -20,9 +20,48 @@ const useStyles = makeStyles((theme) => ({
   title: {
     marginLeft: theme.spacing(2),
     flex: 1,
+    fontFamily: "Poppins, sans-serif",
+    fontSize: "15px",
+    textAlign: 'center',
+    color: "white",
+    
   },
   alriq: {
-      width: "50%"
+      width: "30%",
+      textAlign: 'center',
+      display: "block",
+      marginLeft: "auto",
+      marginRight: "auto",
+
+  },
+  button: {
+    marginLeft: "100px",
+    marginTop: "20px",
+    width: "30%",
+    fontFamily: "poppins, sans-serif",
+    fontSize: "10px",
+    color: "#566B5B",
+    borderColor: "#566B5B",
+    "&:hover": {
+      backgroundColor: "#EA9FA5",
+      color: "white",
+      border: "none"
+    }
+  },
+  toolbar: {
+    backgroundColor: "#93BCB0"
+  },
+  text:{
+    fontFamily: "poppins, sans-serif",
+    fontSize: "20px",
+    color: "#566B5B",
+    textAlign: "center"
+  },
+  techno: {
+    fontFamily: "poppins, sans-serif",
+    fontSize: "20px",
+    color: "#566B5B",
+    textAlign: "center"
   }
 }));
 
@@ -44,12 +83,12 @@ export default function ModalProject() {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button variant="outlined" color="primary" className={classes.button} onClick={handleClickOpen}>
         Voir Plus
       </Button>
       <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
         <AppBar className={classes.appBar}>
-          <Toolbar>
+          <Toolbar className={classes.toolbar}>
             <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
               <CloseIcon />
             </IconButton>
@@ -60,10 +99,11 @@ export default function ModalProject() {
           </Toolbar>
           </AppBar>
           <div>
-          <p>Crée en 2021</p>
+              <p className={classes.text}>Crée en <strong>2021</strong></p>
             <img src="./assets/alriq.png" className={classes.alriq}/>
-            <p>La guinguette de chez alric projet blabla</p>
-            <p>Developpement web</p>
+            <p className={classes.text}>La guinguette de chez alric projet blabla</p>
+            <p className={classes.text}>Catégorie : Developpement web</p>
+            <p className={classes.techno}>Technologie utilisée : Réact - HTML - CSS</p>
             </div>
       
       </Dialog>

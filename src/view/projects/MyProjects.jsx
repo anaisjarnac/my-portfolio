@@ -12,11 +12,11 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#DCEAE8",
+    backgroundColor: "#334F4D",
   },
   button: {
-margin: "40px",
-backgroundColor: "white"
+  margin: "40px",
+  backgroundColor: "white"
   },
   hr: {
     width: "10%",
@@ -28,13 +28,30 @@ backgroundColor: "white"
   },
   title: {
     color: "white",
-    fontFamily: "Inter', sans-serif",
-    marginTop: "50px"
+    fontFamily: "poppins, sans serif",
+    margin: "10px",
+    textAlign: "center",
+    fontWeight: 500,
+    fontSize: "30px",
   },
   back: {
     textAlign: "center",
     fontSize: "50px",
-    color: "red",
+    color: "#92BDB2",
+    margin: "30px"
+  },
+  button: {
+    fontSize: "15px",
+    fontFamily: "poppins, sans serif",
+    backgroundColor: "#DCB727",
+    textDecoration: "none",
+    margin:"40px",
+    color: "white",
+        "&:hover": {
+      backgroundColor: "#B79819",
+      color: "white"
+    }
+
   }
 }));
 
@@ -95,7 +112,7 @@ function MyProjets(props) {
     <div className={classes.list}>
       <Link to={"/"}>< KeyboardBackspaceIcon className={classes.back}/></Link>
         <br />
-      <h1 className={classes.title}>Mes Projets</h1>
+      <h1 className={classes.title}>MES PROJETS</h1>
       <hr className={classes.hr}></hr>
       <ProjectsList mesProjets={Project} className={classes.grid}/>
       <Link to={"/nouveauprojet"}><Button variant="outlined" className={classes.button}>

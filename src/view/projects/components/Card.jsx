@@ -33,11 +33,29 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: red[500],
   },
   title: {
-    fontFamily: "'Barlow', sans-serif",
+    fontFamily: "Poppins, sans-serif",
     fontSize: "20px",
     textAlign: 'center',
+    margin:"10px",
+    color: "#75A19B"
+  },
+  hr: {
+    width: "20%",
+    height: "1px",
+    backgroundColor: "#75A19B",
+    border: "none",
     
-  }
+  },
+  cat: {
+    fontFamily: "Poppins, sans-serif",
+    fontSize: "15px",
+    textAlign: 'center',
+    color: "#9EA074"
+  },
+  icon: {
+    marginLeft: "250px",
+    color: "#566B5B"
+  },
 }));
 
 export default function RecipeReviewCard({ title, category, img, description, date}) {
@@ -50,32 +68,21 @@ export default function RecipeReviewCard({ title, category, img, description, da
 
   return (
     <Card className={classes.root}>
-      <Typography className={classes.title}>{title}</Typography>
-      <p>{category}</p>
-      <CardHeader className={classes.title}
-        action={
-          <IconButton aria-label="settings">
+     <div>
+     <IconButton aria-label="settings" className={classes.icon}>
             <HighlightOffIcon />
           </IconButton>
-          
-        }
-        
-        // title= {devPro.title}  
-        // subheader={devPro.category}
-      />
+     <h1 className={classes.title}>{title}</h1>
+      <hr className={classes.hr}></hr>
+      <p className={classes.cat}>{category}</p>
+      </div>
+      
       <CardMedia
         className={classes.media}
         image={img}
         title={title}
       />
-       <ModalProject />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-        {description}
-        </Typography>
-        <p>Créé en {date}</p>
-    
-      </CardContent>
+       <ModalProject className={classes.modal}/>
     </Card>
   );
 }
