@@ -83,17 +83,17 @@ export default function RecipeReviewCard({ title, category, img, description, da
   const [open, setOpen] = React.useState(false);
   
 
-  const sampleDelete = async () => {
-    const result = await axios.delete('http://localhost:3030/projects/${id}');
-    console.log(result);
-  };
+  // const sampleDelete = async () => {
+  //   const result = await axios.delete(`http://localhost:3030/projects/${id}`);
+  //   console.log(result);
+  // };
 
   return (
     <Card className={classes.root}>
      <div>
      <IconButton aria-label="settings" className={classes.icon}>
-            <HighlightOffIcon onClick={sampleDelete}/>
-            {/* // onClick={() => setOpen(true)} */}
+            <HighlightOffIcon onClick={() => setOpen(true)} />
+            {/* onClick={sampleDelete} */}
             
           </IconButton>
      <h1 className={classes.title}>{title}</h1>
@@ -103,7 +103,7 @@ export default function RecipeReviewCard({ title, category, img, description, da
       <p className={classes.cat2}>{description}</p>
       <CardMedia
         className={classes.media}
-        image={img}
+        image="./assets/alriq.png"
         title={title}
         
       />
