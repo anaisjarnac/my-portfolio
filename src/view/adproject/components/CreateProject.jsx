@@ -6,14 +6,10 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import {
-  Dialog,
-  DialogActions,
-  DialogTitle,
-} from "@material-ui/core";
-import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import { Dialog, DialogActions, DialogTitle } from "@material-ui/core";
+import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import { Link } from "react-router-dom";
-import Upload from "./Upload";
+// import Upload from "./Upload";
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
@@ -46,11 +42,10 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Poppins, sans-serif",
     fontWeight: 400,
     fontSize: "20px",
-    marginBottom:" 10%",
+    marginBottom: " 10%",
     "&:hover": {
       background: "#FFDFA3",
     },
-    
   },
   root: {
     "& .MuiTextField-root": {
@@ -71,7 +66,6 @@ const useStyles = makeStyles((theme) => ({
   input: {
     backgroundColor: "white",
     borderRadius: "5px",
-   
   },
   button: {
     display: "flex",
@@ -84,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     size: "30px",
     height: "3px",
     backgroundColor: "black",
-    border : "none"
+    border: "none",
   },
   alert: {
     fontFamily: "Open Sans Condensed, sans-serif",
@@ -95,18 +89,16 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     fontSize: "50px",
     color: "#FFC864",
-    margin: "30px"
+    margin: "30px",
   },
-  
+
   contain: {
-    
     backgroundImage: "url('/assets/martin.jpg')",
     width: "100%",
     height: "100%",
- backgroundRepeat: "no-repeat",
+    backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundPosition: "center",
-    
   },
 }));
 
@@ -123,7 +115,8 @@ export default function Form() {
   });
 
   const createProjects = () => {
-    axios.post('http://localhost:3030/projects', form)};
+    axios.post("http://localhost:3030/projects", form);
+  };
 
   const handleTextFieldChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -139,134 +132,150 @@ export default function Form() {
 
   return (
     <div className={classes.contain}>
-    <Container component="main" maxWidth="xs" className={classes.container}>
-      <CssBaseline />
-      <div>
-    
-        <Typography className={classes.contact}>
-        <Link to={"/projets"}>< KeyboardBackspaceIcon className={classes.back}/></Link>
-        <br />
-          <strong>CREER UN NOUVEAU PROJET</strong>
-        </Typography>
-        <hr className={classes.hr}></hr>
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                className={classes.input}
-                autoComplete="title"
-                name={"title"}
-                variant="outlined"
-                required
-                fullWidth
-                id="title"
-                label="Titre du Projet"
-                autoFocus
-                onChange={handleTextFieldChange}
-                value={form.title}
-                required={false}
-              />
+      <Container component="main" maxWidth="xs" className={classes.container}>
+        <CssBaseline />
+        <div>
+          <Typography className={classes.contact}>
+            <Link to={"/projets"}>
+              <KeyboardBackspaceIcon className={classes.back} />
+            </Link>
+            <br />
+            <strong>CREER UN NOUVEAU PROJET</strong>
+          </Typography>
+          <hr className={classes.hr}></hr>
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  className={classes.input}
+                  autoComplete="title"
+                  name={"title"}
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="title"
+                  label="Titre du Projet"
+                  autoFocus
+                  onChange={handleTextFieldChange}
+                  value={form.title}
+                  // required={false}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  className={classes.input}
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="date"
+                  label="Année de création"
+                  name={"date"}
+                  autoComplete="date"
+                  onChange={handleTextFieldChange}
+                  value={form.date}
+                  // required={false}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  className={classes.input}
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="category"
+                  label="Catégorie"
+                  name={"category"}
+                  autoComplete="category"
+                  onChange={handleTextFieldChange}
+                  value={form.category}
+                  // required={false}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  className={classes.input}
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="stack"
+                  label="Technologie utilisée"
+                  name={"stack"}
+                  autoComplete="stack"
+                  onChange={handleTextFieldChange}
+                  value={form.stack}
+                  // required={false}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  className={classes.input}
+                  id="outlined-textarea"
+                  required
+                  label="Description du projet"
+                  multiline
+                  variant="outlined"
+                  onChange={handleTextFieldChange}
+                  value={form.description}
+                  name={"description"}
+                  rows={4}
+                  rowsMax={7}
+                  fullWidth
+                  // required={false}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  className={classes.input}
+                  id="outlined-textarea"
+                  required
+                  label="Url de l'image"
+                  multiline
+                  variant="outlined"
+                  onChange={handleTextFieldChange}
+                  value={form.img}
+                  name={"img"}
+                  rows={4}
+                  rowsMax={7}
+                  fullWidth
+                  // required={false}
+                />
+              </Grid>
+
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                className={classes.input}
-                variant="outlined"
-                required
-                fullWidth
-                id="date"
-                label="Année de création"
-                name={"date"}
-                autoComplete="date"
-                onChange={handleTextFieldChange}
-                value={form.date}
-                required={false}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                className={classes.input}
-                variant="outlined"
-                required
-                fullWidth
-                id="category"
-                label="Catégorie"
-                name={"category"}
-                autoComplete="category"
-                onChange={handleTextFieldChange}
-                value={form.category}
-                required={false}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                className={classes.input}
-                variant="outlined"
-                required
-                fullWidth
-                id="stack"
-                label="Technologie utilisée"
-                name={"stack"}
-                autoComplete="stack"
-                onChange={handleTextFieldChange}
-                value={form.stack}
-                required={false}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                className={classes.input}
-                id="outlined-textarea"
-                required
-                label="Description du projet"
-                multiline
-                variant="outlined"
-                onChange={handleTextFieldChange}
-                value={form.description}
-                name={"description"}
-                rows={4}
-                rowsMax={7}
-                fullWidth
-                required={false}
-              />
-            </Grid>
-    
-              <Upload />
-            
-          </Grid>
-          <div className={classes.button}>
-            <Button
-              type="submit"
-              onClick={() => setOpen(true)}
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Créer 
-            </Button>
-          </div>
-          <Dialog
-            open={open}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogTitle id="alert-dialog-title" className={classes.dialog}>
-              {"Votre projet est maintenant en ligne !"}
-            </DialogTitle>
-            <DialogActions>
+            <div className={classes.button}>
               <Button
-                className={classes.ok}
-                onClick={() => setOpen(false)}
+                type="submit"
+                onClick={() => setOpen(true)}
+                fullWidth
+                variant="contained"
                 color="primary"
-                autoFocus
+                className={classes.submit}
               >
-                <strong>cimer</strong>
+                Créer
               </Button>
-            </DialogActions>
-          </Dialog>
-        </form>
-      </div>
-    </Container>
+            </div>
+            <Dialog
+              open={open}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title" className={classes.dialog}>
+                {"Votre projet est maintenant en ligne !"}
+              </DialogTitle>
+              <DialogActions>
+                <Button
+                  className={classes.ok}
+                  onClick={() => setOpen(false)}
+                  color="primary"
+                  autoFocus
+                >
+                  <strong>cimer</strong>
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </form>
+        </div>
+      </Container>
     </div>
   );
 }

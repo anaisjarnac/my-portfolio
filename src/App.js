@@ -1,4 +1,3 @@
-import Header from './layout/components/Header';
 import './App.css';
 import MyProjects from './view/projects/MyProjects'
 import Home from './view/accueil/Home';

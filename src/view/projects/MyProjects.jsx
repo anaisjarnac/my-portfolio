@@ -1,13 +1,11 @@
 import Button from "@material-ui/core/Button";
-import ProjectsList from "./components/ProjectsList";
 import AddIcon from "@material-ui/icons/Add";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
-import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import Card from "./components/Card";
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-
 
 const useStyles = makeStyles(() => ({
   list: {
@@ -25,16 +23,12 @@ const useStyles = makeStyles(() => ({
     gridGap: "60px",
     justifyContent: "center",
   },
-  button: {
-  margin: "40px",
-  backgroundColor: "white"
-  },
   hr: {
     width: "10%",
     height: "2px",
     backgroundColor: "white",
     border: "none",
-    marginBottom: "20px"
+    marginBottom: "20px",
   },
   title: {
     color: "white",
@@ -48,35 +42,36 @@ const useStyles = makeStyles(() => ({
     textAlign: "center",
     fontSize: "50px",
     color: "#92BDB2",
-    margin: "30px"
+    margin: "30px",
   },
   button: {
     fontSize: "15px",
     fontFamily: "poppins, sans serif",
     backgroundColor: "#DCB727",
     textDecoration: "none",
-    margin:"40px",
+    margin: "40px",
     color: "white",
-        "&:hover": {
+    "&:hover": {
       backgroundColor: "#B79819",
-      color: "white"
-    }
-
+      color: "white",
+    },
   },
-    button2: {
+  button2: {
     fontSize: "15px",
     fontFamily: "poppins, sans serif",
     backgroundColor: "#DCB727",
     textDecoration: "none",
-    margin:"40px",
+    margin: "40px",
     color: "white",
-        "&:hover": {
+    "&:hover": {
       backgroundColor: "#B79819",
       color: "white",
-        }
+    },
+  },
+  but: {
+    color: "white",
   }
 }));
-
 
 // const Project = [
 //   {
@@ -127,56 +122,56 @@ const useStyles = makeStyles(() => ({
 //     description: "Packaging marque café local",
 //     stack: "Adobe",
 //   },
-  
+
 // ];
 
-
-
 function MyProjets(props) {
+  const [projet, setProjet] = useState([]);
 
-const [projet, setProjet] = useState([]);
-
-useEffect(() => {
-  axios
-    .get("http://localhost:3030/projects")
-    .then((response) => response.data)
-    .then((data) => {
-      setProjet(data);
-    });
-
+  useEffect(() => {
+    axios
+      .get("http://localhost:3030/projects")
+      .then((response) => response.data)
+      .then((data) => {
+        setProjet(data);
+      });
   });
 
-const [showAll, setShowAll] = React.useState(false);
+  const [showAll, setShowAll] = React.useState(false);
 
-function handleShowAll() {
-  setShowAll(!showAll);
-}
+  function handleShowAll() {
+    setShowAll(!showAll);
+  }
 
   const classes = useStyles();
   return (
     <div className={classes.list}>
-      <Link to={"/"}>< KeyboardBackspaceIcon className={classes.back}/></Link>
-        <br />
+      <Link to={"/"}>
+        <KeyboardBackspaceIcon className={classes.back} />
+      </Link>
+      <br />
       <h1 className={classes.title}>MES PROJETS</h1>
       <hr className={classes.hr}></hr>
 
       <Button onClick={handleShowAll} className={classes.button2}>
-        Développement Web {showAll ? '' : ''}
+        Développement Web {showAll ? "" : "& DESIGN"}
       </Button>
 
       <div className={classes.grid}>
-      {projet
-        .filter(
-          (project, index) => !showAll || project.category.includes('Développement Web') 
-        )
-        .map((devPro, index) => (
-          <Card {...devPro} key={index} />
-      ))}
-        </div>
-      <Link to={"/nouveauprojet"}><Button variant="outlined" className={classes.button}>
-        Ajouter un projet
-        <AddIcon />
-      </Button>
+        {projet
+          .filter(
+            (project, index) =>
+              !showAll || project.category.includes("Développement Web")
+          )
+          .map((devPro, index) => (
+            <Card {...devPro} key={index} />
+          ))}
+      </div>
+      <Link to={"/nouveauprojet"} className={classes.button}>
+        <Button variant="outlined" className={classes.but} >
+          Ajouter un projet
+          <AddIcon />
+        </Button>
       </Link>
     </div>
   );
